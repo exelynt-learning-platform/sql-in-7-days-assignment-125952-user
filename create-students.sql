@@ -1,6 +1,6 @@
 
 -- Assignment: Hello SQL
--- Student: Gayatri Kotwal
+-- Student Name: Gayatri Kotwal
 -- Database: MySQL
 
 -- Create database
@@ -13,16 +13,37 @@ USE hello_sql;
 CREATE TABLE IF NOT EXISTS students (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    age INT NOT NULL,
-    email VARCHAR(100) UNIQUE,
-    course VARCHAR(100) NOT NULL
+    city VARCHAR(100) NOT NULL,
+    marks INT NOT NULL
 );
 
 -- Insert student records
-INSERT INTO students (name, age, email, course)
-VALUES
-('Gayatri Kotwal', 22, 'gayatri@example.com', 'Artificial Intelligence'),
-('Priya Sharma', 21, 'priya@example.com', 'Computer Science'),
-('Rahul Patil', 23, 'rahul@example.com', 'Data Science'),
-('Sneha Joshi', 20, 'sneha@example.com', 'Information Technology'),
-('Amit Kulkarni', 22, 'amit@example.com', 'Computer Science');
+INSERT INTO students (name, city, marks)
+SELECT 'Gayatri Kotwal', 'Pune', 92
+WHERE NOT EXISTS (
+    SELECT 1 FROM students WHERE name = 'Gayatri Kotwal'
+);
+
+INSERT INTO students (name, city, marks)
+SELECT 'Priya Sharma', 'Mumbai', 85
+WHERE NOT EXISTS (
+    SELECT 1 FROM students WHERE name = 'Priya Sharma'
+);
+
+INSERT INTO students (name, city, marks)
+SELECT 'Rahul Patil', 'Nashik', 88
+WHERE NOT EXISTS (
+    SELECT 1 FROM students WHERE name = 'Rahul Patil'
+);
+
+INSERT INTO students (name, city, marks)
+SELECT 'Sneha Joshi', 'Pune', 90
+WHERE NOT EXISTS (
+    SELECT 1 FROM students WHERE name = 'Sneha Joshi'
+);
+
+INSERT INTO students (name, city, marks)
+SELECT 'Amit Kulkarni', 'Nagpur', 78
+WHERE NOT EXISTS (
+    SELECT 1 FROM students WHERE name = 'Amit Kulkarni'
+);
